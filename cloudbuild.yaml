@@ -2,7 +2,7 @@ steps:
   # use a makefile to create folder and copy it
 - name: 'gcr.io/$PROJECT_ID/restore_cache'
   args:
-  - '--bucket=gs://haskell-deps/'
+  - '--bucket=gs://haskell-deps'
   - '--key=resources-$( checksum package.yaml )'
 - name: 'gcr.io/$PROJECT_ID/make'
   args: ['list']
@@ -15,7 +15,7 @@ steps:
   args: ['list']
 - name: 'gcr.io/$PROJECT_ID/save_cache'
   args:
-  - '--bucket=gs://haskell-deps/'
+  - '--bucket=gs://haskell-deps'
   - '--key=resources-$( checksum package.yaml )'
   - '--path=.stack-work'
   - '--path=/root/.stack'
