@@ -21,6 +21,7 @@ steps:
   - '--path=/root/.stack'
 # - name: 'gcr.io/$PROJECT_ID/docker'
 #
+#
 #   args: ['build', '--target', 'dependencies', '--cache-from', 'gcr.io/$PROJECT_ID/reminders-deps', '-t', 'gcr.io/$PROJECT_ID/reminders-deps', '.']
 #   images: [ 'gcr.io/$PROJECT_ID/reminders-deps']
 # - name: 'gcr.io/cloud-builders/docker'
