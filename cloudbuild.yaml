@@ -4,16 +4,18 @@ steps:
   args:
   - '--bucket=gs://haskell-deps/'
   - '--key=resources-$( checksum package.yaml )'
-- name: gcr.io/$PROJECT_ID/stack
-  args:
-    # - --no-terminal
-    - build
-    - --system-ghc
-- name: 'gcr.io/$PROJECT_ID/save_cache'
-  args:
-  - '--bucket=gs://haskell-deps/'
-  - '--key=resources-$( checksum package.yaml )'
-  - '--path=.stack-work'
+- name: 'gcr.io/cloud-community-builders/make'
+  args: ['list']
+# - name: gcr.io/$PROJECT_ID/stack
+#   args:
+#     # - --no-terminal
+#     - build
+#     - --system-ghc
+# - name: 'gcr.io/$PROJECT_ID/save_cache'
+#   args:
+#   - '--bucket=gs://haskell-deps/'
+#   - '--key=resources-$( checksum package.yaml )'
+#   - '--path=.stack-work'
 # - name: 'gcr.io/$PROJECT_ID/docker'
 #
 #   args: ['build', '--target', 'dependencies', '--cache-from', 'gcr.io/$PROJECT_ID/reminders-deps', '-t', 'gcr.io/$PROJECT_ID/reminders-deps', '.']
@@ -22,7 +24,6 @@ steps:
 #   args: ['build', '--target', 'app', '--cache-from', 'gcr.io/$PROJECT_ID/reminders-deps:latest', '-t', 'gcr.io/$PROJECT_ID/reminders', '.']
   # enable kaniko
   #
-#
 #
   # use commit hash for tagging
 # - name: 'gcr.io/kaniko-project/executor:latest'
