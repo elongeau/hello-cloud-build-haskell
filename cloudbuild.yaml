@@ -24,7 +24,6 @@ steps:
   #
 #
 #
-#
   # use commit hash for tagging
 # - name: 'gcr.io/kaniko-project/executor:latest'
 #   args: 
