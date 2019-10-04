@@ -4,7 +4,7 @@ steps:
   args:
   - '--bucket=gs://haskell-deps/'
   - '--key=resources-$( checksum package.yaml )'
-- name: 'gcr.io/cloud-community-builders/make'
+- name: 'gcr.io/$PROJECT_ID/make'
   args: ['list']
 # - name: gcr.io/$PROJECT_ID/stack
 #   args:
