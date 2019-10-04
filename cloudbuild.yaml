@@ -6,11 +6,13 @@ steps:
   - '--key=resources-$( checksum package.yaml )'
 - name: 'gcr.io/$PROJECT_ID/make'
   args: ['list']
-# - name: gcr.io/$PROJECT_ID/stack
-#   args:
-#     # - --no-terminal
-#     - build
-#     - --system-ghc
+- name: gcr.io/$PROJECT_ID/stack
+  args:
+    - --no-terminal
+    - build
+    - --system-ghc
+- name: 'gcr.io/$PROJECT_ID/make'
+  args: ['list']
 # - name: 'gcr.io/$PROJECT_ID/save_cache'
 #   args:
 #   - '--bucket=gs://haskell-deps/'
