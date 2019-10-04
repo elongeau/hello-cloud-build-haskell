@@ -1,0 +1,35 @@
+steps:
+  # use a makefile to create folder and copy it
+- name: 'gcr.io/$PROJECT_ID/restore_cache'
+  args:
+  - '--bucket=gs://haskell-deps/'
+  - '--key=resources-$( checksum package.yaml )'
+- name: gcr.io/$PROJECT_ID/stack
+  args:
+    # - --no-terminal
+    - build
+    - --system-ghc
+- name: 'gcr.io/$PROJECT_ID/save_cache'
+  args:
+  - '--bucket=gs://haskell-deps/'
+  - '--key=resources-$( checksum package.yaml )'
+  - '--path=.stack-work'
+# - name: 'gcr.io/$PROJECT_ID/docker'
+#
+#   args: ['build', '--target', 'dependencies', '--cache-from', 'gcr.io/$PROJECT_ID/reminders-deps', '-t', 'gcr.io/$PROJECT_ID/reminders-deps', '.']
+#   images: [ 'gcr.io/$PROJECT_ID/reminders-deps']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '--target', 'app', '--cache-from', 'gcr.io/$PROJECT_ID/reminders-deps:latest', '-t', 'gcr.io/$PROJECT_ID/reminders', '.']
+  # enable kaniko
+  #
+#
+  # use commit hash for tagging
+# - name: 'gcr.io/kaniko-project/executor:latest'
+#   args: 
+#   - --destination=gcr.io/$PROJECT_ID/reminders
+#   - --cache=true
+#   - --cache-ttl=24h
+#
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   args: ['beta', 'run', 'deploy', 'reminders', '--image', 'gcr.io/$PROJECT_ID/reminders', '--region', 'europe-west1', '--platform', 'managed']
+timeout: 9600s
